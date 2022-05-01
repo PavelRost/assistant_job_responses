@@ -72,6 +72,11 @@
                                 <c:out value="Резюме отклонено"/>
                             </c:if>
                         </td>
+                        <td>
+                            <c:if test="${company != null && company.getDone() == 'false'}">
+                                <a href="<c:url value='/update?id=${company.getId()}'/>"> | Изменить на "Отказано"</a>
+                            </c:if>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
