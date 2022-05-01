@@ -38,7 +38,7 @@ public class CompanyService {
         companyRep.save(company);
     }
 
-    public Company findCompanyByName(String name) {
-        return companyRep.findCompanyByName(name).get();
+    public List<Company> findCompanyByName(String name) {
+        return companyRep.searchCompanyByNameLike(name);
     }
 }

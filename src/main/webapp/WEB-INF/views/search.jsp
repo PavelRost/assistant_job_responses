@@ -59,23 +59,25 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td><c:out value="${company.getName()}"/></td>
-                        <td><c:out value="${company.getCreated()}"/></td>
-                        <td>
-                            <c:if test="${company.getDone() == 'false'}">
-                                <c:out value="Отправлено на рассмотрение"/>
-                            </c:if>
-                            <c:if test="${company.getDone() == 'true'}">
-                                <c:out value="Резюме отклонено"/>
-                            </c:if>
-                        </td>
-                        <td>
-                            <c:if test="${company != null && company.getDone() == 'false'}">
-                                <a href="<c:url value='/update?id=${company.getId()}'/>">"Отказано"</a>
-                            </c:if>
-                        </td>
-                    </tr>
+                    <c:forEach items="${company}" var="comp">
+                        <tr>
+                            <td><c:out value="${comp.getName()}"/></td>
+                            <td><c:out value="${comp.getCreated()}"/></td>
+                            <td>
+                                <c:if test="${comp.getDone() == 'false'}">
+                                    <c:out value="Отправлено на рассмотрение"/>
+                                </c:if>
+                                <c:if test="${comp.getDone() == 'true'}">
+                                    <c:out value="Резюме отклонено"/>
+                                </c:if>
+                            </td>
+                            <td>
+                                <c:if test="${comp.getDone() == 'false'}">
+                                    <a href="<c:url value='/update?id=${comp.getId()}'/>">"Отказано"</a>
+                                </c:if>
+                            </td>
+                        </tr>
+                    </c:forEach>
                     </tbody>
                 </table>
             </div>
