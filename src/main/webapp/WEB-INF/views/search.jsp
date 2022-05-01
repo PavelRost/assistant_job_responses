@@ -53,7 +53,6 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th scope="col">№</th>
                         <th scope="col">Название компании</th>
                         <th scope="col">Дата отклика</th>
                         <th scope="col">Статус</th>
@@ -61,7 +60,6 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td><c:out value="${company.getId()}"/></td>
                         <td><c:out value="${company.getName()}"/></td>
                         <td><c:out value="${company.getCreated()}"/></td>
                         <td>
@@ -74,7 +72,7 @@
                         </td>
                         <td>
                             <c:if test="${company != null && company.getDone() == 'false'}">
-                                <a href="<c:url value='/update?id=${company.getId()}'/>"> | Изменить на "Отказано"</a>
+                                <a href="<c:url value='/update?id=${company.getId()}'/>">"Отказано"</a>
                             </c:if>
                         </td>
                     </tr>

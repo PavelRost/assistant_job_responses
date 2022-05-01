@@ -59,7 +59,6 @@
                     <thead>
                     <label>Отклики на рассмотрении:</label>
                     <tr>
-                        <th scope="col">№</th>
                         <th scope="col">Название компании</th>
                         <th scope="col">Дата отклика</th>
                         <th scope="col">Статус</th>
@@ -68,7 +67,6 @@
                     <tbody>
                     <c:forEach items="${companyDoneFalse}" var="comp">
                         <tr>
-                            <td><c:out value="${comp.getId()}"/></td>
                             <td><c:out value="${comp.getName()}"/></td>
                             <td><c:out value="${comp.getCreated()}"/></td>
                             <td>
@@ -77,7 +75,7 @@
                                 </c:if>
                             </td>
                             <td>
-                                <a href="<c:url value='/update?id=${comp.getId()}'/>"> | Изменить на "Отказано"</a>
+                                <a href="<c:url value='/update?id=${comp.getId()}'/>">"Отказано"</a>
                             </td>
                         </tr>
                     </c:forEach>

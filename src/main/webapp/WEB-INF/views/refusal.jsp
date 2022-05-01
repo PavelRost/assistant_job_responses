@@ -53,7 +53,6 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th scope="col">№</th>
                         <th scope="col">Название компании</th>
                         <th scope="col">Дата отклика</th>
                         <th scope="col">Статус</th>
@@ -62,7 +61,6 @@
                     <tbody>
                     <c:forEach items="${companys}" var="comp">
                         <tr>
-                            <td><c:out value="${comp.getId()}"/></td>
                             <td><c:out value="${comp.getName()}"/></td>
                             <td><c:out value="${comp.getCreated()}"/></td>
                             <td>
