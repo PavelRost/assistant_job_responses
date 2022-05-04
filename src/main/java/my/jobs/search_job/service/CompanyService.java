@@ -41,4 +41,14 @@ public class CompanyService {
     public List<Company> findCompanyByName(String name) {
         return companyRep.searchCompanyByNameLike(name);
     }
+
+    public void delete(int id) {
+        companyRep.delete(companyRep.findById(id).get());
+    }
+
+    public void deleteAll() {
+        companyRep.deleteAll();
+    }
+
+
 }

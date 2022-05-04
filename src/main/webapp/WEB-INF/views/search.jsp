@@ -76,6 +76,11 @@
                                     <a href="<c:url value='/update?id=${comp.getId()}'/>">"Отказано"</a>
                                 </c:if>
                             </td>
+                            <td>
+                                <a href="<c:url value='/delete?id=${comp.id}'/>">
+                                    <span class="fa fa-trash-o"></span>
+                                </a>
+                            </td>
                         </tr>
                     </c:forEach>
                     </tbody>

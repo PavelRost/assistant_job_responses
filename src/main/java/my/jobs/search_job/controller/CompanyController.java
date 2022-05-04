@@ -49,4 +49,16 @@ public class CompanyController {
         model.addAttribute("company", companyService.findCompanyByName(name));
         return "search";
     }
+
+    @GetMapping("/delete")
+    public String delete(@RequestParam("id") int id) {
+        companyService.delete(id);
+        return "redirect:/";
+    }
+
+    @GetMapping("/deleteAll")
+    public String deleteAll() {
+        companyService.deleteAll();
+        return "redirect:/";
+    }
 }
