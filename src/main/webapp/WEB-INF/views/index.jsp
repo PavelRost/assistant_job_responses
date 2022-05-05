@@ -70,11 +70,11 @@
         <div class="card" style="width: 100%">
             <div class="card-header">
                 Всего откликов:
-                <c:out value="${companyDoneFalse.size() + companyDoneTrue.size()}"/>
+                <c:out value="${responseDoneFalse.size() + responseDoneTrue.size()}"/>
                 | На рассмотрении:
-                <c:out value="${companyDoneFalse.size()}"/>
+                <c:out value="${responseDoneFalse.size()}"/>
                 | Отказано:
-                <c:out value="${companyDoneTrue.size()}"/>
+                <c:out value="${responseDoneTrue.size()}"/>
             </div>
             <div class="card-body">
                 <table class="table">
@@ -87,17 +87,17 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${companyDoneFalse}" var="comp">
+                    <c:forEach items="${responseDoneFalse}" var="resp">
                         <tr>
-                            <td><c:out value="${comp.getName()}"/></td>
-                            <td><c:out value="${comp.getCreated()}"/></td>
+                            <td><c:out value="${resp.getName()}"/></td>
+                            <td><c:out value="${resp.getCreated()}"/></td>
                             <td>
-                                <c:if test="${comp.getDone() == 'false'}">
+                                <c:if test="${resp.getDone() == 'false'}">
                                     <c:out value="Отправлено на рассмотрение"/>
                                 </c:if>
                             </td>
                             <td>
-                                <a href="<c:url value='/update?id=${comp.getId()}'/>">"Отказано"</a>
+                                <a href="<c:url value='/update?id=${resp.getId()}'/>">"Отказано"</a>
                             </td>
                         </tr>
                     </c:forEach>

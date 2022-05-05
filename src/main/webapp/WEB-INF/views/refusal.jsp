@@ -59,12 +59,12 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${companys}" var="comp">
+                    <c:forEach items="${responses}" var="resp">
                         <tr>
-                            <td><c:out value="${comp.getName()}"/></td>
-                            <td><c:out value="${comp.getCreated()}"/></td>
+                            <td><c:out value="${resp.getName()}"/></td>
+                            <td><c:out value="${resp.getCreated()}"/></td>
                             <td>
-                                <c:if test="${comp.getDone() == 'true'}">
+                                <c:if test="${resp.getDone() == 'true'}">
                                     <c:out value="Резюме отклонено"/>
                                 </c:if>
                             </td>

@@ -1,6 +1,6 @@
 package my.jobs.search_job.controller;
 
-import my.jobs.search_job.service.CompanyService;
+import my.jobs.search_job.service.ResponseService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,16 +8,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class IndexController {
 
-    private final CompanyService companyService;
+    private final ResponseService responseService;
 
-    public IndexController(CompanyService companyService) {
-        this.companyService = companyService;
+    public IndexController(ResponseService responseService) {
+        this.responseService = responseService;
     }
 
     @GetMapping({"/", "/index"})
     public String index(Model model) {
-        model.addAttribute("companyDoneFalse", companyService.findAllWithDoneFalse());
-        model.addAttribute("companyDoneTrue", companyService.findAllWithDoneTrue());
+        model.addAttribute("responseDoneFalse", responseService.findAllWithDoneFalse());
+        model.addAttribute("responseDoneTrue", responseService.findAllWithDoneTrue());
         return "index";
     }
 

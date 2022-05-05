@@ -59,7 +59,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${company}" var="comp">
+                    <c:forEach items="${response}" var="comp">
                         <tr>
                             <td><c:out value="${comp.getName()}"/></td>
                             <td><c:out value="${comp.getCreated()}"/></td>

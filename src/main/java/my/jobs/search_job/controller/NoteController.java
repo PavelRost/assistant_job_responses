@@ -1,6 +1,5 @@
 package my.jobs.search_job.controller;
 
-import my.jobs.search_job.model.Company;
 import my.jobs.search_job.model.Note;
 import my.jobs.search_job.service.NoteService;
 import org.springframework.stereotype.Controller;

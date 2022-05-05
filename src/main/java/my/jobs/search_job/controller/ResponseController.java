@@ -1,7 +1,7 @@
 package my.jobs.search_job.controller;
 
-import my.jobs.search_job.model.Company;
-import my.jobs.search_job.service.CompanyService;
+import my.jobs.search_job.model.Response;
+import my.jobs.search_job.service.ResponseService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-public class CompanyController {
+public class ResponseController {
 
-    private final CompanyService companyService;
+    private final ResponseService responseService;
 
-    public CompanyController(CompanyService companyService) {
-        this.companyService = companyService;
+    public ResponseController(ResponseService responseService) {
+        this.responseService = responseService;
     }
 
     @GetMapping("/create")
@@ -26,15 +26,15 @@ public class CompanyController {
     }
 
     @PostMapping("/save")
-    public String save(@ModelAttribute Company company, HttpServletRequest req) {
-        company.setName(req.getParameter("name"));
-        companyService.addCompany(company);
+    public String save(@ModelAttribute Response response, HttpServletRequest req) {
+        response.setName(req.getParameter("name"));
+        responseService.addResponse(response);
         return "redirect:/";
     }
 
     @GetMapping("/update")
     public String updateStatus(@RequestParam("id") int id) {
-        companyService.updateStatus(id);
+        responseService.updateStatus(id);
         return "redirect:/";
     }
 
@@ -44,21 +44,21 @@ public class CompanyController {
     }
 
     @PostMapping("/findName")
-    public String findCompanyByName(Model model, HttpServletRequest req) {
+    public String findResponseByName(Model model, HttpServletRequest req) {
         String name = req.getParameter("name");
-        model.addAttribute("company", companyService.findCompanyByName(name));
+        model.addAttribute("response", responseService.findResponseByName(name));
         return "search";
     }
 
     @GetMapping("/delete")
     public String delete(@RequestParam("id") int id) {
-        companyService.delete(id);
+        responseService.delete(id);
         return "redirect:/";
     }
 
     @GetMapping("/deleteAll")
     public String deleteAll() {
-        companyService.deleteAll();
+        responseService.deleteAll();
         return "redirect:/";
     }
 }

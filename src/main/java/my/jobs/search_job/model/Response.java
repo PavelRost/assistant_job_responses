@@ -6,7 +6,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "company")
-public class Company implements Comparable<Company>{
+public class Response implements Comparable<Response>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,10 +18,10 @@ public class Company implements Comparable<Company>{
 
     private Boolean done = false;
 
-    public Company() {
+    public Response() {
     }
 
-    public Company(String name) {
+    public Response(String name) {
         this.name = name;
     }
 
@@ -50,7 +50,7 @@ public class Company implements Comparable<Company>{
     }
 
     @Override
-    public int compareTo(Company o) {
+    public int compareTo(Response o) {
         return this.created.compareTo(o.created);
     }
 }
