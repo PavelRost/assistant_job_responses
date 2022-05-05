@@ -5,6 +5,7 @@ import my.jobs.search_job.repository.NoteRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -27,6 +28,7 @@ public class NoteService {
     public List<Note> getAllNote() {
         List<Note> rsl = new ArrayList<>();
         noteRep.findAll().forEach(rsl::add);
+        rsl.sort(Comparator.naturalOrder());
         return rsl;
     }
 

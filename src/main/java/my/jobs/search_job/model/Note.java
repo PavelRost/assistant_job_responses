@@ -5,7 +5,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "note")
-public class Note {
+public class Note implements Comparable<Note>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,4 +39,8 @@ public class Note {
     }
 
 
+    @Override
+    public int compareTo(Note o) {
+        return this.description.compareTo(o.description);
+    }
 }
