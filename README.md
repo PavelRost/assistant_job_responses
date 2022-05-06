@@ -36,6 +36,10 @@ ___
 
 ![Добавить новый отклик](https://user-images.githubusercontent.com/92044501/166139700-67753f0a-bdfe-4989-a66c-3c07861281b2.jpg)
 
+Редактирование отклика
+
+![Редактирование отклика форма](https://user-images.githubusercontent.com/92044501/167185436-e7af4f30-d4dc-4381-9d15-182a6df3e370.jpg)
+
 Страница с отказами
 
 ![Отказы](https://user-images.githubusercontent.com/92044501/166139708-4121047e-5226-499f-8c2f-fc5eaab106fd.jpg)
