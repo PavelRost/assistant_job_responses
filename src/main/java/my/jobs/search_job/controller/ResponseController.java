@@ -1,5 +1,6 @@
 package my.jobs.search_job.controller;
 
+import my.jobs.search_job.model.Note;
 import my.jobs.search_job.model.Response;
 import my.jobs.search_job.service.ResponseService;
 import org.springframework.stereotype.Controller;
@@ -35,6 +36,21 @@ public class ResponseController {
     @GetMapping("/update")
     public String updateStatus(@RequestParam("id") int id) {
         responseService.updateStatus(id);
+        return "redirect:/";
+    }
+
+    @GetMapping("/updateRespDescGet")
+    public String updateDesc(@RequestParam("id") int id, Model model) {
+        model.addAttribute("response", responseService.findById(id));
+        return "update";
+    }
+
+    @PostMapping("/updateRespDescPost")
+    public String updateDesc(@RequestParam("id") int id, HttpServletRequest req) {
+        String name = req.getParameter("name");
+        Response response = responseService.findById(id);
+        response.setName(name);
+        responseService.addResponse(response);
         return "redirect:/";
     }
 

@@ -84,6 +84,7 @@
                         <th scope="col">Название компании</th>
                         <th scope="col">Дата отклика</th>
                         <th scope="col">Статус</th>
+                        <th scope="col">Изменить статус</th>
                     </tr>
                     </thead>
                     <tbody>

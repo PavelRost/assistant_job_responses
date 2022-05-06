@@ -1,7 +1,6 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!doctype html>
-<html lang="en">
+<html>
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -40,6 +39,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="<c:url value='/indexNote'/>">Заметки о поиске</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<c:url value='/newNote'/>">Добавить заметку</a>
+            </li>
         </ul>
     </div>
 </div>
@@ -47,69 +49,27 @@
     <div class="row">
         <div class="card" style="width: 100%">
             <div class="card-header">
-                Форма поиска компании среди откликов:
+                Форма редактирования отклика
             </div>
             <div class="card-body">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th scope="col">Название компании</th>
-                        <th scope="col">Дата отклика</th>
-                        <th scope="col">Статус</th>
-                        <th scope="col">Изменить статус</th>
-                        <th scope="col">Управление откликом</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <c:forEach items="${response}" var="comp">
-                        <tr>
-                            <td><c:out value="${comp.getName()}"/></td>
-                            <td><c:out value="${comp.getCreated()}"/></td>
-                            <td>
-                                <c:if test="${comp.getDone() == 'false'}">
-                                    <c:out value="Отправлено на рассмотрение"/>
-                                </c:if>
-                                <c:if test="${comp.getDone() == 'true'}">
-                                    <c:out value="Резюме отклонено"/>
-                                </c:if>
-                            </td>
-                            <td>
-                                <c:if test="${comp.getDone() == 'false'}">
-                                    <a href="<c:url value='/update?id=${comp.getId()}'/>">"Отказано"</a>
-                                </c:if>
-                            </td>
-                            <td>
-                                <a href="<c:url value='/updateRespDescGet?id=${comp.id}'/>">
-                                    <span class="fa fa-edit mr-3"></span>
-                                </a>
-                                <a href="<c:url value='/delete?id=${comp.id}'/>">
-                                    <span class="fa fa-trash-o"></span>
-                                </a>
-                            </td>
-                        </tr>
-                    </c:forEach>
-                    </tbody>
-                </table>
-            </div>
-            <div class="card-body">
-                <label>Введите название компании:</label>
-                <form  action="<c:url value='/findName'/>" method='POST'>
+                <label>Введите новое содержание отклика:</label>
+                <form  action="<c:url value='/updateRespDescPost?id=${response.id}'/>" method='POST'>
                     <div class="form-group">
-                        <input type="text" class="form-control" name="name">
+                        <input type="text" class="form-control" name="name" value="${response.name}">
                     </div>
-                    <button type="submit" class="btn btn-primary">Найти</button>
+                    <button type="submit" class="btn btn-primary">Сохранить</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
 </body>
 </html>
-
-

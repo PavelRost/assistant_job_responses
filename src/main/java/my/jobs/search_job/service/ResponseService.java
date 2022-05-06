@@ -50,5 +50,9 @@ public class ResponseService {
         responseRep.deleteAll();
     }
 
+    public Response findById(int id) {
+        return responseRep.findById(id).get();
+    }
+
 
 }
