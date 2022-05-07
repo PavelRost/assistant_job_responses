@@ -1,6 +1,7 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!doctype html>
+<html lang="en">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -49,16 +50,31 @@
     <div class="row">
         <div class="card" style="width: 100%">
             <div class="card-header">
-                Форма редактирования заметки
+                Архивные отклики:
             </div>
             <div class="card-body">
-                <label>Введите новое содержание заметки:</label>
-                <form  action="<c:url value='/updateNotePost?id=${note.id}'/>" method='POST'>
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="description" value="${note.description}">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Сохранить</button>
-                </form>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Название компании</th>
+                        <th scope="col">Дата отклика</th>
+                        <th scope="col">Статус</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <c:forEach items="${archiveResponse}" var="archiveResp">
+                        <tr>
+                            <td><c:out value="${archiveResp.name}"/></td>
+                            <td><c:out value="${archiveResp.created}"/></td>
+                            <td>
+                                <c:if test="${archiveResp.archive == 'true' && archiveResp.done == 'false'}">
+                                    <c:out value="Отправлено на рассмотрение (АРХИВ)"/>
+                                </c:if>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -70,6 +86,6 @@
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
 </body>
 </html>
+

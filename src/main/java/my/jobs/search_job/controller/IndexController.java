@@ -16,8 +16,9 @@ public class IndexController {
 
     @GetMapping({"/", "/index"})
     public String index(Model model) {
-        model.addAttribute("responseDoneFalse", responseService.findAllWithDoneFalse());
-        model.addAttribute("responseDoneTrue", responseService.findAllWithDoneTrue());
+        model.addAttribute("responseDoneFalseArchiveFalse", responseService.findAllWithDoneAndArchiveFalse());
+        model.addAttribute("responseDoneTrueArchiveFalse", responseService.findAllWithDoneTrueAndArchiveFalse());
+        model.addAttribute("responseDoneFalseArchiveTrue", responseService.findAllWithArchiveTrueAndDoneFalse());
         return "index";
     }
 

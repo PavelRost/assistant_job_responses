@@ -57,6 +57,9 @@
                 <a class="nav-link" href="<c:url value='/refusal'/>">Отказы</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="<c:url value='/archive'/>">Архивные отклики</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="<c:url value='/indexNote'/>">Заметки о поиске</a>
             </li>
             <li class="nav-item">
@@ -70,11 +73,13 @@
         <div class="card" style="width: 100%">
             <div class="card-header">
                 Всего откликов:
-                <c:out value="${responseDoneFalse.size() + responseDoneTrue.size()}"/>
+                <c:out value="${responseDoneFalseArchiveFalse.size() + responseDoneTrueArchiveFalse.size() + responseDoneFalseArchiveTrue.size()}"/>
                 | На рассмотрении:
-                <c:out value="${responseDoneFalse.size()}"/>
+                <c:out value="${responseDoneFalseArchiveFalse.size()}"/>
                 | Отказано:
-                <c:out value="${responseDoneTrue.size()}"/>
+                <c:out value="${responseDoneTrueArchiveFalse.size()}"/>
+                | В архиве:
+                <c:out value="${responseDoneFalseArchiveTrue.size()}"/>
             </div>
             <div class="card-body">
                 <table class="table">
@@ -88,17 +93,20 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${responseDoneFalse}" var="resp">
+                    <c:forEach items="${responseDoneFalseArchiveFalse}" var="resp">
                         <tr>
                             <td><c:out value="${resp.getName()}"/></td>
                             <td><c:out value="${resp.getCreated()}"/></td>
                             <td>
-                                <c:if test="${resp.getDone() == 'false'}">
+                                <c:if test="${resp.getDone() == 'false' && resp.archive == 'false'}">
                                     <c:out value="Отправлено на рассмотрение"/>
                                 </c:if>
                             </td>
                             <td>
-                                <a href="<c:url value='/update?id=${resp.getId()}'/>">"Отказано"</a>
+                                <c:if test="${resp.getDone() == 'false' && resp.archive == 'false'}">
+                                    <a href="<c:url value='/update?id=${resp.getId()}'/>">"Отказано"</a>
+                                    <a href="<c:url value='/updateStatusArchive?id=${resp.getId()}'/>">| "В архив"</a>
+                                </c:if>
                             </td>
                         </tr>
                     </c:forEach>

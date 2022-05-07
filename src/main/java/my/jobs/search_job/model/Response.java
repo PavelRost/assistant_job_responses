@@ -17,6 +17,7 @@ public class Response implements Comparable<Response>{
     private Date created = new Date(System.currentTimeMillis());;
 
     private Boolean done = false;
+    private Boolean archive = false;
 
     public Response() {
     }
@@ -47,6 +48,14 @@ public class Response implements Comparable<Response>{
 
     public Boolean getDone() {
         return done;
+    }
+
+    public Boolean getArchive() {
+        return archive;
+    }
+
+    public void setArchive(Boolean archive) {
+        this.archive = archive;
     }
 
     @Override

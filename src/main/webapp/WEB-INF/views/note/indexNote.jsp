@@ -38,6 +38,9 @@
                 <a class="nav-link" href="<c:url value='/refusal'/>">Отказы</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="<c:url value='/archive'/>">Архивные отклики</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="<c:url value='/indexNote'/>">Заметки о поиске</a>
             </li>
             <li class="nav-item">

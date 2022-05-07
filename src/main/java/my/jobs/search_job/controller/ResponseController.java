@@ -1,6 +1,5 @@
 package my.jobs.search_job.controller;
 
-import my.jobs.search_job.model.Note;
 import my.jobs.search_job.model.Response;
 import my.jobs.search_job.service.ResponseService;
 import org.springframework.stereotype.Controller;
@@ -36,6 +35,12 @@ public class ResponseController {
     @GetMapping("/update")
     public String updateStatus(@RequestParam("id") int id) {
         responseService.updateStatus(id);
+        return "redirect:/";
+    }
+
+    @GetMapping("/updateStatusArchive")
+    public String updateStatusArchive(@RequestParam("id") int id) {
+        responseService.updateStatusArchive(id);
         return "redirect:/";
     }
 
@@ -76,5 +81,11 @@ public class ResponseController {
     public String deleteAll() {
         responseService.deleteAll();
         return "redirect:/";
+    }
+
+    @GetMapping("/archive")
+    public String delete(Model model) {
+        model.addAttribute("archiveResponse", responseService.findAllWithArchiveTrueAndDoneFalse());
+        return "archive/indexArchive";
     }
 }

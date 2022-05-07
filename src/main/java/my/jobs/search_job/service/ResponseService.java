@@ -20,14 +20,14 @@ public class ResponseService {
         responseRep.save(response);
     }
 
-    public List<Response> findAllWithDoneFalse() {
-        List<Response> rsl = responseRep.findResponseByDoneFalse();
+    public List<Response> findAllWithDoneAndArchiveFalse() {
+        List<Response> rsl = responseRep.findResponseByDoneFalseAndArchiveFalse();
         rsl.sort(Comparator.reverseOrder());
         return rsl;
     }
 
-    public List<Response> findAllWithDoneTrue() {
-        List<Response> rsl = responseRep.findResponseByDoneTrue();
+    public List<Response> findAllWithDoneTrueAndArchiveFalse() {
+        List<Response> rsl = responseRep.findResponseByDoneTrueAndArchiveFalse();
         rsl.sort(Comparator.reverseOrder());
         return rsl;
     }
@@ -35,6 +35,12 @@ public class ResponseService {
     public void updateStatus(int id) {
         Response response = responseRep.findById(id).get();
         response.setDone(true);
+        responseRep.save(response);
+    }
+
+    public void updateStatusArchive(int id) {
+        Response response = responseRep.findById(id).get();
+        response.setArchive(true);
         responseRep.save(response);
     }
 
@@ -53,6 +59,12 @@ public class ResponseService {
     public Response findById(int id) {
         return responseRep.findById(id).get();
     }
+
+    public List<Response> findAllWithArchiveTrueAndDoneFalse() {
+        return responseRep.findResponseByDoneFalseAndArchiveTrue();
+    }
+
+
 
 
 }

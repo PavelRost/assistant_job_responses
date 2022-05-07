@@ -13,6 +13,14 @@ public interface ResponseRepository extends CrudRepository<Response, Integer> {
 
     List<Response> findResponseByDoneTrue();
 
+    List<Response> findResponseByArchiveTrue();
+
+    List<Response> findResponseByDoneFalseAndArchiveFalse();
+
+    List<Response> findResponseByDoneFalseAndArchiveTrue();
+
+    List<Response> findResponseByDoneTrueAndArchiveFalse();
+
     @Query("SELECT res FROM Response res WHERE res.name LIKE %:name%")
     List<Response> searchResponseByNameLike(@Param("name") String name);
 }
