@@ -33,8 +33,8 @@ public class ResponseController {
     }
 
     @GetMapping("/update")
-    public String updateStatus(@RequestParam("id") int id) {
-        responseService.updateStatus(id);
+    public String updateStatusDone(@RequestParam("id") int id) {
+        responseService.updateStatusDone(id);
         return "redirect:/";
     }
 
@@ -84,8 +84,8 @@ public class ResponseController {
     }
 
     @GetMapping("/archive")
-    public String delete(Model model) {
-        model.addAttribute("archiveResponse", responseService.findAllWithArchiveTrueAndDoneFalse());
+    public String getRespArchive(Model model) {
+        model.addAttribute("archiveResponse", responseService.findRespDoneFalseArchiveTrue());
         return "archive/indexArchive";
     }
 }

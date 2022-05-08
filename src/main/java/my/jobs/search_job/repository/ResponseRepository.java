@@ -9,12 +9,6 @@ import java.util.List;
 
 public interface ResponseRepository extends CrudRepository<Response, Integer> {
 
-    List<Response> findResponseByDoneFalse();
-
-    List<Response> findResponseByDoneTrue();
-
-    List<Response> findResponseByArchiveTrue();
-
     List<Response> findResponseByDoneFalseAndArchiveFalse();
 
     List<Response> findResponseByDoneFalseAndArchiveTrue();

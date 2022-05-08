@@ -55,7 +55,7 @@ public class NoteController {
     }
 
     @GetMapping("/deleteNote")
-    public String update(@RequestParam("id") int id) {
+    public String delete(@RequestParam("id") int id) {
         noteService.delete(id);
         return "redirect:/indexNote";
     }

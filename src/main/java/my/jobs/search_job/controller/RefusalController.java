@@ -16,7 +16,7 @@ public class RefusalController {
 
     @GetMapping({"/refusal"})
     public String index(Model model) {
-        model.addAttribute("responses", responseService.findAllWithDoneTrueAndArchiveFalse());
+        model.addAttribute("responses", responseService.findRespDoneTrueArchiveFalse());
         return "refusal";
     }
 
