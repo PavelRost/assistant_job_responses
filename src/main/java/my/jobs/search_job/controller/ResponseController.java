@@ -32,26 +32,32 @@ public class ResponseController {
         return "redirect:/";
     }
 
-    @GetMapping("/update")
-    public String updateStatusDone(@RequestParam("id") int id) {
+    @GetMapping("/setStatusDone")
+    public String setStatusDone(@RequestParam("id") int id, HttpServletRequest req) {
+        String redirect = "redirect:/";
         responseService.updateStatusDone(id);
-        return "redirect:/";
+        String referer = req.getHeader("referer");
+        if (referer.endsWith("findName")) redirect = "redirect:/search";
+        return redirect;
     }
 
-    @GetMapping("/updateStatusArchive")
-    public String updateStatusArchive(@RequestParam("id") int id) {
+    @GetMapping("/setStatusArchive")
+    public String setStatusArchive(@RequestParam("id") int id, HttpServletRequest req) {
+        String redirect = "redirect:/";
         responseService.updateStatusArchive(id);
-        return "redirect:/";
+        String referer = req.getHeader("referer");
+        if (referer.endsWith("findName")) redirect = "redirect:/search";
+        return redirect;
     }
 
     @GetMapping("/updateRespDescGet")
-    public String updateDesc(@RequestParam("id") int id, Model model) {
+    public String updateDescription(@RequestParam("id") int id, Model model) {
         model.addAttribute("response", responseService.findById(id));
         return "update";
     }
 
     @PostMapping("/updateRespDescPost")
-    public String updateDesc(@RequestParam("id") int id, HttpServletRequest req) {
+    public String updateDescription(@RequestParam("id") int id, HttpServletRequest req) {
         String name = req.getParameter("name");
         Response response = responseService.findById(id);
         response.setName(name);

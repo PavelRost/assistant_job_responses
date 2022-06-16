@@ -81,8 +81,8 @@
                             </td>
                             <td>
                                 <c:if test="${comp.getDone() == 'false' && comp.archive == 'false'}">
-                                    <a href="<c:url value='/update?id=${comp.getId()}'/>">"Отказано"</a>
-                                    <a href="<c:url value='/updateStatusArchive?id=${comp.getId()}'/>">| "В архив"</a>
+                                    <a href="<c:url value='/setStatusDone?id=${comp.getId()}'/>">"Отказано"</a>
+                                    <a href="<c:url value='/setStatusArchive?id=${comp.getId()}'/>">| "В архив"</a>
                                 </c:if>
                             </td>
                             <td>

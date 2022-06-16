@@ -104,8 +104,8 @@
                             </td>
                             <td>
                                 <c:if test="${resp.getDone() == 'false' && resp.archive == 'false'}">
-                                    <a href="<c:url value='/update?id=${resp.getId()}'/>">"Отказано"</a>
-                                    <a href="<c:url value='/updateStatusArchive?id=${resp.getId()}'/>">| "В архив"</a>
+                                    <a href="<c:url value='/setStatusDone?id=${resp.getId()}'/>">"Отказано"</a>
+                                    <a href="<c:url value='/setStatusArchive?id=${resp.getId()}'/>">| "В архив"</a>
                                 </c:if>
                             </td>
                         </tr>
