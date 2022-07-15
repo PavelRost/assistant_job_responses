@@ -21,10 +21,10 @@ import static org.mockito.Mockito.verify;
 public class NoteServiceUnitTest {
 
     @Mock
-    NoteRepository noteRepository;
+    private NoteRepository noteRepository;
 
     @InjectMocks
-    NoteService noteService;
+    private NoteService noteService;
 
     private final Note noteTest = mock(Note.class);
 

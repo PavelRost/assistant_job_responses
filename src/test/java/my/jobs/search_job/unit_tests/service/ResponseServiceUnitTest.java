@@ -21,10 +21,10 @@ import static org.mockito.Mockito.verify;
 public class ResponseServiceUnitTest {
 
     @Mock
-    ResponseRepository responseRepository;
+    private ResponseRepository responseRepository;
 
     @InjectMocks
-    ResponseService responseService;
+    private ResponseService responseService;
 
     private final Response responseTest = mock(Response.class);
 
