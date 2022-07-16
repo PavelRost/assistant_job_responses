@@ -20,6 +20,7 @@ import java.util.List;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.mockito.Mockito.*;
 
 @WebMvcTest(IndexController.class)
 public class IndexControllerUnitTest {
@@ -47,6 +48,10 @@ public class IndexControllerUnitTest {
                 .andExpect(model().attribute("responseDoneFalseArchiveFalse", responseFalseFalse))
                 .andExpect(model().attribute("responseDoneTrueArchiveFalse", responseTrueFalse))
                 .andExpect(model().attribute("responseDoneFalseArchiveTrue", responseFalseTrue));
+
+        verify(responseService).findRespDoneArchiveFalse();
+        verify(responseService).findRespDoneTrueArchiveFalse();
+        verify(responseService).findRespDoneFalseArchiveTrue();
     }
 
 

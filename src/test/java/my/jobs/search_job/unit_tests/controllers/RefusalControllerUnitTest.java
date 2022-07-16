@@ -14,6 +14,7 @@ import java.util.List;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.mockito.Mockito.*;
 
 @WebMvcTest(RefusalController.class)
 public class RefusalControllerUnitTest {
@@ -33,6 +34,8 @@ public class RefusalControllerUnitTest {
                 .andExpect(status().isOk())
                 .andExpect(model().attributeExists("responses"))
                 .andExpect(model().attribute("responses", responseTrueFalse));
+
+        verify(responseService).findRespDoneTrueArchiveFalse();
     }
 
 }
