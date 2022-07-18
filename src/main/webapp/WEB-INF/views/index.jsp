@@ -1,3 +1,4 @@
+<%@ page import="java.util.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!doctype html>
@@ -81,10 +82,19 @@
                 | В архиве:
                 <c:out value="${responseDoneFalseArchiveTrue.size()}"/>
             </div>
+            <div class="card-header">
+                Откликов за сегодня:
+                <c:out value="${countRespToday}"/>
+                | Откликов за вчера:
+                <c:out value="${countRespYesterday}"/>
+            </div>
+            <div class="card-header">
+                <b>Мотивация:</b>
+                <c:out value="${motivation}"/>
+            </div>
             <div class="card-body">
                 <table class="table">
                     <thead>
-                    <label>Отклики на рассмотрении:</label>
                     <tr>
                         <th scope="col">Название компании</th>
                         <th scope="col">Дата отклика</th>

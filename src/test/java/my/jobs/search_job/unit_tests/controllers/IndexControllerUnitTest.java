@@ -31,6 +31,7 @@ public class IndexControllerUnitTest {
     @MockBean
     private ResponseService responseService;
 
+    // TODO - добавить проверку нескольких моделей
     @Test
     public void whenGetDifferentResponseThenStatus200() throws Exception {
         List<Response> responseFalseFalse = List.of(new Response("FalseFalse"));
