@@ -31,7 +31,6 @@ public class IndexControllerUnitTest {
     @MockBean
     private ResponseService responseService;
 
-    // TODO - добавить проверку нескольких моделей
     @Test
     public void whenGetDifferentResponseThenStatus200() throws Exception {
         List<Response> responseFalseFalse = List.of(new Response("FalseFalse"));
@@ -43,6 +42,9 @@ public class IndexControllerUnitTest {
 
         mockMvc.perform(get("/index"))
                 .andExpect(status().isOk())
+                .andExpect(model().attributeExists("motivation"))
+                .andExpect(model().attributeExists("countRespToday"))
+                .andExpect(model().attributeExists("countRespYesterday"))
                 .andExpect(model().attributeExists("responseDoneFalseArchiveFalse"))
                 .andExpect(model().attributeExists("responseDoneTrueArchiveFalse"))
                 .andExpect(model().attributeExists("responseDoneFalseArchiveTrue"))
