@@ -82,16 +82,26 @@
                             </td>
                             <td>
                                 <c:if test="${comp.getDone() == 'false' && comp.archive == 'false'}">
-                                    <a href="<c:url value='/setStatusDone?id=${comp.getId()}'/>">"Отказано"</a>
-                                    <a href="<c:url value='/setStatusArchive?id=${comp.getId()}'/>">| "В архив"</a>
+                                    <a href="<c:url value='/setStatusDone?id=${comp.getId()}'/>">
+                                        <span class="fa fa-times"></span>
+                                        Отказано
+                                    </a>
+                                    <br>
+                                    <a href="<c:url value='/setStatusArchive?id=${comp.getId()}'/>">
+                                        <span class="fa fa-archive"></span>
+                                        Архив
+                                    </a>
                                 </c:if>
                             </td>
                             <td>
                                 <a href="<c:url value='/updateRespDescGet?id=${comp.id}'/>">
-                                    <span class="fa fa-edit mr-3"></span>
+                                    <span class="fa fa-edit"></span>
+                                    Редактировать
                                 </a>
+                                <br>
                                 <a href="<c:url value='/delete?id=${comp.id}'/>">
                                     <span class="fa fa-trash-o"></span>
+                                    Удалить
                                 </a>
                             </td>
                         </tr>
