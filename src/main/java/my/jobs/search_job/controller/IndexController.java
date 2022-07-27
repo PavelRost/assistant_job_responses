@@ -22,20 +22,9 @@ public class IndexController {
     @GetMapping({"/", "/index"})
     public String index(Model model) {
         List<Response> responseListAllFalse = responseService.findRespDoneArchiveFalse();
-        String motivation;
-        long countRespToday = responseListAllFalse.stream()
-                .filter(response -> response.getCreated().getDate() == new Date().getDate())
-                .count();
-        long countRespYesterday = responseListAllFalse.stream()
-                .filter(response -> response.getCreated().getDate() == (new Date().getDate() - 1))
-                .count();
-        if (countRespToday > countRespYesterday) {
-            motivation = "Отличный результат, продолжай в том же духе!";
-        } else if (countRespToday < countRespYesterday) {
-            motivation = "Сегодня ты мало откликался, так работу не найдешь!";
-        } else {
-            motivation = countRespToday == 0 ? "За два дня ни одного отклика, хватит бездельничать!" : "Количество откликов сравнялось со вчерашним днем, неплохо, навались еще!";
-        }
+        int countRespToday = responseService.getCountResponseToday();
+        int countRespYesterday = responseService.getCountResponseYesterday();
+        String motivation = responseService.getMotivationText(countRespToday, countRespYesterday);
         model.addAttribute("motivation", motivation);
         model.addAttribute("countRespToday", countRespToday);
         model.addAttribute("countRespYesterday", countRespYesterday);

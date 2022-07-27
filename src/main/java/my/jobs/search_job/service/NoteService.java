@@ -26,10 +26,10 @@ public class NoteService {
     }
 
     public List<Note> getAllNote() {
-        List<Note> rsl = new ArrayList<>();
-        noteRep.findAll().forEach(rsl::add);
-        rsl.sort(Comparator.naturalOrder());
-        return rsl;
+        List<Note> noteList = new ArrayList<>();
+        noteRep.findAll().forEach(noteList::add);
+        noteList.sort(Comparator.naturalOrder());
+        return noteList;
     }
 
     public Note findById(int id) {

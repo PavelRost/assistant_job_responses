@@ -5,6 +5,7 @@ import my.jobs.search_job.repository.ResponseRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -21,15 +22,15 @@ public class ResponseService {
     }
 
     public List<Response> findRespDoneArchiveFalse() {
-        List<Response> rsl = responseRep.findResponseByDoneFalseAndArchiveFalse();
-        rsl.sort(Comparator.reverseOrder());
-        return rsl;
+        List<Response> responseList = responseRep.findResponseByDoneFalseAndArchiveFalse();
+        responseList.sort(Comparator.reverseOrder());
+        return responseList;
     }
 
     public List<Response> findRespDoneTrueArchiveFalse() {
-        List<Response> rsl = responseRep.findResponseByDoneTrueAndArchiveFalse();
-        rsl.sort(Comparator.reverseOrder());
-        return rsl;
+        List<Response> responseList = responseRep.findResponseByDoneTrueAndArchiveFalse();
+        responseList.sort(Comparator.reverseOrder());
+        return responseList;
     }
 
     public void updateStatusDone(int id) {
@@ -45,9 +46,9 @@ public class ResponseService {
     }
 
     public List<Response> findResponseByName(String name) {
-        List<Response> rsl = responseRep.searchResponseByNameLike(name);
-        rsl.sort(Comparator.reverseOrder());
-        return rsl;
+        List<Response> responseList = responseRep.searchResponseByNameLike(name);
+        responseList.sort(Comparator.reverseOrder());
+        return responseList;
     }
 
     public void delete(int id) {
@@ -63,12 +64,34 @@ public class ResponseService {
     }
 
     public List<Response> findRespDoneFalseArchiveTrue() {
-        List<Response> rsl = responseRep.findResponseByDoneFalseAndArchiveTrue();
-        rsl.sort(Comparator.reverseOrder());
-        return rsl;
+        List<Response> responseList = responseRep.findResponseByDoneFalseAndArchiveTrue();
+        responseList.sort(Comparator.reverseOrder());
+        return responseList;
     }
 
+    public int getCountResponseToday() {
+        List<Response> responseList = responseRep.findResponseByDoneFalseAndArchiveFalse();
+        return (int) responseList.stream()
+                .filter(response -> response.getCreated().getDate() == new Date().getDate())
+                .count();
+    }
 
+    public int getCountResponseYesterday() {
+        List<Response> responseList = responseRep.findResponseByDoneFalseAndArchiveFalse();
+        return (int) responseList.stream()
+                .filter(response -> response.getCreated().getDate() == (new Date().getDate() - 1))
+                .count();
+    }
 
-
+    public String getMotivationText(int countRespToday, int countRespYesterday) {
+        String motivation;
+        if (countRespToday > countRespYesterday) {
+            motivation = "Отличный результат, продолжай в том же духе!";
+        } else if (countRespToday < countRespYesterday) {
+            motivation = "Сегодня ты мало откликался, так работу не найдешь!";
+        } else {
+            motivation = countRespToday == 0 ? "За два дня ни одного отклика, хватит бездельничать!" : "Количество откликов сравнялось со вчерашним днем, неплохо, навались еще!";
+        }
+        return motivation;
+    }
 }
